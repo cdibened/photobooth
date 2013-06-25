@@ -13,6 +13,7 @@
         filmstrip = id('filmstrip'),
         wrapper = id('wrapper'),
         instruction = id('instruction'),
+        flash = id('flash'),
         startbutton = id('startbutton'),
         timerbtn = id('timerbutton'),
         trash = id('trash'),
@@ -102,6 +103,7 @@
 
         snap.play();
         startbutton.classList.add('flash');
+        flash.classList.remove('hide');
         canvas.width = width;
         canvas.height = height;
         canvas.getContext('2d').drawImage(video, 0, 0, width, height);
@@ -120,6 +122,7 @@
             timerbtn.classList.remove('reverse');
             timerimg.classList.remove('hide');
             countdown.classList.add('hide');
+            flash.classList.add('hide');
             clearInterval(window._tid);
             window._tid = null;
             window.count = 0;
@@ -129,6 +132,7 @@
     }
 
     function openBooth() {
+        drapes.classList.add( 'hide' );
         if (!alreadyAsked) {
             navigator.getUserMedia({
                 video: true,
@@ -179,6 +183,7 @@
                     if (enabled) {
                         if (ev.keyCode === 13 || ev.keyCode === 32) {
                             startbutton.classList.remove('flash');
+                            flash.classList.add('hide');
                         }
                         ev.preventDefault();
                     }
@@ -187,6 +192,7 @@
                 startbutton.addEventListener('mousedown', function(ev) {
                     if (enabled) {
                         startbutton.classList.add('flash');
+                        flash.classList.remove('hide');
                         ev.preventDefault();
                     }
                 }, false);
@@ -200,9 +206,10 @@
                 }, false);
 
                 startbutton.addEventListener('click', function(ev) {
-                    if (enabled) {
+                    if (enabled && !window._tid) {
                         takePicture();
                         startbutton.classList.remove('flash');
+                        flash.classList.add('hide');
                         ev.preventDefault();
                     }
                 }, false);
@@ -212,10 +219,12 @@
                         timerbtn.classList.add('reverse');
                         timerimg.classList.add('hide');
                         countdown.classList.remove('hide');
+                        startbutton.classList.add('disabled');
                         delay.disabled = true;
 
                         window._tid = setInterval(function() {
                             startbutton.classList.add('flash');
+                            flash.classList.remove('hide');
                             takePicture();
                         }, (timerSec * 1000));
                         window.count = timerSec;
@@ -239,10 +248,22 @@
             }
         }, 1000);
         startbutton.classList.remove('flash');
+        flash.classList.add('hide');
     }
+
+    function resetEffects() {
+        effects.forEach( function(v,i) {
+            id(v).value = 0;
+            id(v + "Number").innerHTML = ( 0 + units[i] );
+        });
+        video.style["-webkit-filter"] = "";
+    }
+
+    window.resetEffects = resetEffects;
 
     function disableBooth() {
         startbutton.classList.add('disabled');
+        startbutton.classList.remove('flash');
         timerbtn.classList.add('disabled');
         delay.disabled = true;
         effects.forEach(function(v) {
@@ -257,6 +278,8 @@
 
     function enableBooth() {
         startbutton.classList.remove('disabled');
+        startbutton.classList.remove('flash');
+        flash.classList.add('hide');
         timerbtn.classList.remove('disabled');
         delay.disabled = false;
         effects.forEach(function(v) {
@@ -274,7 +297,7 @@
         drapes.addEventListener(transitionEnd, openBooth, true);
         instruction.classList.add('hide');
         drapes.classList.add('open');
-        instruction.classList.add('open');
+        // instruction.classList.add('open');
         ev.preventDefault();
     }, false);
 
