@@ -25,6 +25,7 @@ Since this application uses [getUserMedia](http://caniuse.com/stream), supported
 - refactor javascript code
 - clean up css
 - add support to share pictures through email, posting to social sites, etc…
+- ability to edit pictures
 - add animation sugar to filmstrip reel
 - add full support to all above browers
 
