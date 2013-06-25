@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Your very own Photobooth!
+        </title>
+        <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Text+Me+One' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="css/photobooth.css">
+    </head>
+    <body>
+        <div id="drapes">
+            <img id="drapes-left" src="images/curtain-left.jpg">
+            <img id="drapes-right" src="images/curtain-right.jpg">
+            <span id="instruction">
+                <em>
+                    When you're ready,
+                    tap the curtains to open.
+                </em>
+            </span>
+        </div>
+        <div id="wrapper" class="hide">
+            <div style="position:relative;">
+                <div id="booth">
+                    <video id="video"></video>
+                </div>
+                <button id="startbutton" class="disabled">
+                    <img src="images/camera.png" />
+                </button>
+                <button id="timerbutton" class="disabled">
+                    <img id="timer" src="images/timer.png" />
+                    <label id="countdown" class="hide">
+                        3
+                    </label>
+                </button>
+                <label id="delayNumber" class="disabled"></label>
+                <input type="range" id="delay" name="delay" min="1" max="5" value="3" disabled>
+                <label class="delaylabel">
+                    Timer Delay
+                </label>
+            </div>
+            <div id="effects">
+                <span>
+                    <label id="blurNumber" class="disabled">
+                        0
+                    </label>
+                    <input type="range" id="blur" name="blur" min="0" max="10" value="0" step="0.1"
+                    disabled>
+                    <label id="blurLabel">
+                        Blur
+                    </label>
+                </span>
+                <span>
+                    <label id="grayscaleNumber" class="disabled">
+                        0
+                    </label>
+                    <input type="range" id="grayscale" name="grayscale" min="0" max="10" value="0"
+                    step="0.1" disabled>
+                    <label id="grayscaleLabel">
+                        Grayscale
+                    </label>
+                </span>
+                <span>
+                    <label id="sepiaNumber" class="disabled">
+                        0
+                    </label>
+                    <input type="range" id="sepia" name="sepia" min="0" max="10" value="0"
+                    step="0.1" disabled>
+                    <label id="sepiaLabel">
+                        Sepia
+                    </label>
+                </span>
+                <span>
+                    <label id="hue-rotateNumber" class="disabled">
+                        0deg
+                    </label>
+                    <input type="range" id="hue-rotate" name="hue-rotate" min="0" max="330"
+                    value="0" step="1" disabled>
+                    <label id="hue-rotateLabel">
+                        Hue-Rotate
+                    </label>
+                </span>
+                <span>
+                    <label id="brightnessNumber" class="disabled">
+                        0
+                    </label>
+                    <input type="range" id="brightness" name="brightness" min="0" max="10"
+                    value="0" step="0.1" disabled>
+                    <label id="brightnessLabel">
+                        Brightness
+                    </label>
+                </span>
+                <span>
+                    <label id="invertNumber" class="disabled">
+                        0
+                    </label>
+                    <input type="range" id="invert" name="invert" min="0" max="1" value="0"
+                    step="0.1" disabled>
+                    <label id="invertLabel">
+                        Invert
+                    </label>
+                </span>
+                <span>
+                    <label id="contrastNumber" class="disabled">
+                        0
+                    </label>
+                    <input type="range" id="contrast" name="contrast" min="0" max="10" value="0"
+                    step="0.1" disabled>
+                    <label id="contrastLabel">
+                        Contrast
+                    </label>
+                </span>
+                <span>
+                    <label id="saturateNumber" class="disabled">
+                        0
+                    </label>
+                    <input type="range" id="saturate" name="saturate" min="0" max="10" value="0"
+                    step="0.1" disabled>
+                    <label id="saturateLabel">
+                        Saturate
+                    </label>
+                </span>
+            </div>
+            <div id="filmstrip">
+                <ul id="pics"></ul>
+            </div>
+            <button id="trash" class="disabled">
+                <img src="images/trash.png" />
+            </button>
+            <canvas id="canvas"></canvas>
+        </div>
+        <audio id="snap" preload="auto" src="sounds/snap.wav"></audio>
+        <audio id="curtain" preload="auto" src="sounds/curtain.wav"></audio>
+        <script src="js/prefixfree.js"></script>
+        <script src="js/photobooth.js"></script>
+    </body>
+</html>

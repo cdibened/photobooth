@@ -1,0 +1,289 @@
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    background: #333;
+    font-family: 'Text Me One', 'Merriweather Sans', 'Helvetica';
+    min-width: 750px;
+    overflow-x: hidden;
+}
+
+em {
+    font-style: normal;
+}
+
+canvas {
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+#wrapper {
+    overflow-x: hidden;
+    padding-top: 40px;
+    position: relative;
+    margin-left: -120px;
+}
+
+#startbutton,
+#timerbutton,
+#trash {
+    background: green;
+    border: none;
+    color: #fff;
+    margin: 0px 20px 20px -205px;
+    padding: 20px 20px;
+    font-size: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+}
+
+#timerbutton {
+    font-size: 48px;
+    min-width: 100px;
+    min-height: 100px;
+    margin-top: 135px;
+}
+
+#startbutton img,
+#timerbutton img,
+#trash img {
+    height: 60px;
+    width: 60px;
+}
+
+#trash {
+    position: absolute;
+    margin-top: -111px;
+    margin-left: 320px;
+    background: #ee2c2c;
+}
+
+#startbutton.flash {
+    background: white;
+}
+
+#timerbutton.reverse {
+    background: white;
+    color: green;
+}
+
+.disabled {
+    background: #ccc !important;
+}
+
+#container {
+    overflow: hidden;
+    width: 880px;
+    margin: 20px auto;
+}
+
+div#booth {
+    /* border: inset red 10px; */
+    height: 240px;
+    width: 320px;
+    line-height: 120px;
+    font-size: 30px;
+    position: relative;
+    overflow: hidden;
+    background: black;
+    color: rgba(255,255,255, 0.3);
+    /* text-shadow: 0 0 2px yellow , 0 0 4px black,0 0 6px white; */
+    display: inline-block;
+    position: relative;
+    margin-right: 240px;
+}
+
+#drapes {
+    height: 100%;
+}
+
+#drapes-left,
+#drapes-right {
+    width: 60%;
+    height: 120%;
+    padding: 0;
+    float: none;
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    z-index: 5;
+    transition: all 1.5s ease-out;
+    transform: rotate(0deg);
+    background-repeat: repeat;
+    /* background-size: 80px; */
+}
+
+#drapes-right {
+    left: 50%;
+    z-index: 4;
+}
+
+#drapes.open #drapes-left,
+#drapes.open #drapes-right {
+    width: 0;
+    background-size: 1px;
+    /* transition: all 1.5s ease; */
+    transform: rotate( 20deg ) skew( 10deg);
+}
+
+#drapes.open #drapes-right {
+    left: calc(100% + 60px);
+    transform: rotate( -20deg ) skew( -10deg);
+}
+
+#instruction.open {
+    top: -500px;
+    position: absolute;
+    transition: all 1.5s ease-out;
+}
+
+#instruction {
+    position: relative;
+    z-index: 5;
+    line-height: 2em;
+    font-size: 5em;
+    color: rgb( 235, 245, 178);
+}
+
+#filmstrip {
+    display: block;
+    position: relative;
+    left: 50%;
+    margin-left: -298px;
+    /* margin-top: 50px; */
+}
+
+#filmstrip > ul {
+    list-style: none;
+    width: 595px;
+    background: url(../images/filmstrip.png) 0 0 repeat-x;
+    padding: 25px 0px 25px 0px;
+    margin: 5px 0px;
+    height: 110px;
+}
+
+img {
+    padding: 5px;
+    width: 80px;
+    height: 60px;
+    float: left;
+}
+
+#filmstrip > ul > li {
+    position: relative;
+}
+
+#pics > li > img {
+    width: 97px;
+    height: auto;
+    top: -6px;
+    left: 11px;
+    position: absolute;
+    padding: 0;
+}
+
+#pics > li.second {
+    left: 119px;
+}
+
+#pics > li.third {
+    left: 238px;
+}
+
+#pics > li.fourth {
+    left: 357px;
+}
+
+#pics > li.fifth {
+    left: 476px;
+}
+
+#effects {
+    width: 595px;
+    margin: auto;
+    margin-top: 55px;
+    position: relative;
+}
+
+#delay {
+    height: 10px;
+    margin-top: 100px;
+    z-index: 0;
+    position: absolute;
+    margin-left: -88px;
+    width: 100px;
+    margin-top: 195px;
+}
+
+#delayNumber {
+    position: absolute;
+    top: 149px;
+    font-size: 2em;
+    margin-left: -47px;
+    color: green;
+}
+
+.delaylabel {
+    position: absolute;
+    top: 213px;
+    display: inline-block;
+    margin-left: -80px;
+}
+
+#delayNumber.disabled {
+    color: #ccc;
+    background: transparent !important;
+}
+
+label,
+label.disabled {
+    color: #ccc;
+    background: transparent !important;
+}
+
+#effects > span {
+    position: relative;
+    display: inline-block;
+    height: 80px;
+    min-height: 80px;
+}
+
+#effects > span :first-child {
+    position: absolute;
+    margin-left: 0;
+    top: -25px;
+}
+
+#effects > span :last-child {
+    position: absolute;
+    left: 50%;
+    margin-left: -69px;
+    top: 25px;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: green;
+    width: 135px;
+    height: 10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #fff;
+    opacity: 0.5;
+    width: 10px;
+    height: 26px;
+}
+
+input[type=range]:disabled {
+    background-color: #ccc;
+}
